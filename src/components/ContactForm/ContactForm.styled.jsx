@@ -13,6 +13,7 @@ export const Input = styled.input`
   background-color: #f2fff0;
   border: ${p => p.theme.borders.none};
   border-radius: ${p => p.theme.radii.middle};
+  outline: none;
 
   &:hover {
     background-color: #dafbf3;
