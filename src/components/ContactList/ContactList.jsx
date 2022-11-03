@@ -1,7 +1,7 @@
 import React from 'react';
 import { ItemContact, ButtonContact } from './ContactList.styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { getContacts, getFilter } from 'redux/selectors';
+import { getContacts, getFilter, getFilteredContacts } from 'redux/selectors';
 import { deleteContact } from 'redux/contactsSlice';
 
 export default function ContactList() {
@@ -13,21 +13,7 @@ export default function ContactList() {
     dispatch(deleteContact(id));
   };
 
-  const getFilteredContacts = () => {
-    if (!filter) {
-      return contacts;
-    }
-
-    const normalizedFilter = filter.toLocaleLowerCase();
-    const filteredContacts = contacts.filter(({ name }) => {
-      const normalizedName = name.toLocaleLowerCase();
-      const result = normalizedName.includes(normalizedFilter);
-      return result;
-    });
-    return filteredContacts;
-  };
-
-  const visibleContacts = getFilteredContacts();
+  const visibleContacts = getFilteredContacts(filter, contacts);
 
   return (
     <ul>
